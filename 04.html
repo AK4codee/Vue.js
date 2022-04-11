@@ -21,6 +21,8 @@
 
         <input type="checkbox" name="" v-model="check" id="">
         <p>check: {{check}}</p>
+
+        <button v-on:click="changeData">click me</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
@@ -30,6 +32,13 @@
                 inputData: 'BuildSchool',
                 selectItem: 'BuildSchool',
                 check: true
+            },
+            methods: {
+                changeData(){
+                    this.inputData = '大安區',
+                    this.selectItem = 'Vue',
+                    this.check = false
+                }
             }
         })
     </script>

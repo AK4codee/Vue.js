@@ -37,6 +37,7 @@
                 <input type="text" v-model="inputData.address" class="form-control">
             </div>
         </div>
+        <button :disable="addVerify" class="btn btn-primary">submit</button>
     </div>
 
 
@@ -48,6 +49,7 @@
         let app = new Vue({
             el: "#app",
             data: {
+                addVerify: true,
                 inputData: {
                     account: '',
                     password: '',
@@ -80,6 +82,7 @@
                             this.inputDataCheck.accountError = false
                             this.inputDataCheck.accountErrorMsg = ''
                         }
+                        this.checkVerify()
                     }
                 },
                 'inputData.password': {
@@ -94,6 +97,7 @@
                             this.inputDataCheck.passwordError = false
                             this.inputDataCheck.passwordErrorMsg = ""
                         }
+                        this.checkVerify()
                     }
                 },
                 'inputData.checkPassword': {
@@ -105,6 +109,18 @@
                             this.inputDataCheck.checkPasswordError = false
                             this.inputDataCheck.checkPasswordErrorMsg = ""
                         }
+                        this.checkVerify()
+                    }
+                }
+            },
+            methods: {
+                checkVerify(){
+                    for(let prop in this.inputDataCheck){
+                        if(this.inputDataCheck[prop] == true){
+                            this.addVerify = false
+                            return
+                        }
+                        this.addVerify = true
                     }
                 }
             }

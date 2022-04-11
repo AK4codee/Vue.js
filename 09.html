@@ -11,28 +11,28 @@
         <div class="row p-5">
             <div class="col-12 col-md-6 mb-3">
                 <label for="">Account</label>
-                <input type="text" v-model="inputData.account">
-                <div class="text-danger small mt-1">err msg</div>
+                <input type="text" v-model="inputData.account" :class="{'is-invalid': inputDataCheck.accountError}" class="form-control">
+                <div v-if="inputDataCheck.accountError" class="text-danger small mt-1">{{inputDataCheck.accountErrorMsg}}</div><!--  不為空，長度大於8 -->
             </div>
             <div class="col-12 col-md-6 mb-3">
                 <label for="">Password</label>
-                <input type="text" v-model="inputData.password">
+                <input type="text" v-model="inputData.password" class="form-control">
             </div>
             <div class="col-12 col-md-6 mb-3">
                 <label for="">Check Password</label>
-                <input type="text" v-model="inputData.checkPassword">
+                <input type="text" v-model="inputData.checkPassword" class="form-control">
             </div>
             <div class="col-12 col-md-6 mb-3">
                 <label for="">Name</label>
-                <input type="text" v-model="inputData.name">
+                <input type="text" v-model="inputData.name" class="form-control">
             </div>
             <div class="col-12 col-md-6 mb-3">
                 <label for="">Tel</label>
-                <input type="text" v-model="inputData.tel">
+                <input type="text" v-model="inputData.tel" class="form-control">
             </div>
             <div class="col-12 col-md-6 mb-3">
                 <label for="">Address</label>
-                <input type="text" v-model="inputData.address">
+                <input type="text" v-model="inputData.address" class="form-control">
             </div>
         </div>
     </div>
@@ -53,6 +53,27 @@
                     name: '',
                     tel: '',
                     address: ''
+                },
+                inputDataCheck: {
+                    accountError: false,
+                    accountErrorMsg: ''
+                }
+            },
+            watch: {
+                'inputData.account': {
+                    handler(){
+                        if(this.inputData.account == ''){
+                            this.inputDataCheck.accountError = true
+                            this.inputDataCheck.accountErrorMsg = '此處為必填'
+                        }else if(this.inputData.account.length < 8){
+                            this.inputDataCheck.accountError = true
+                            this.inputDataCheck.accountErrorMsg = '密碼長度不得小於8'
+                        }
+                        else{
+                            this.inputDataCheck.accountError = false
+                            this.inputDataCheck.accountErrorMsg = ''
+                        }
+                    }
                 }
             }
         })

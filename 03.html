@@ -17,6 +17,13 @@
         <ul>
             <li v-for="(item, index) in 10" :key="index">{{item}}</li>
         </ul>
+
+        <button v-on:click="showAll">顯示全部</button>
+        <button v-on:click="showMoreThenTwenty">顯示大於 23 歲</button>
+        
+        <ul>
+            <li v-for="(item, index) in arr3">{{item.name}} {{item.age}}</li>
+        </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
@@ -31,7 +38,16 @@
             el: "#app",
             data: {
                 arr,
-                arr2
+                arr2,
+                arr3: []
+            },
+            methods: {
+                showAll(){
+                    this.arr3 = this.arr2
+                },
+                showMoreThenTwenty(){
+                    this.arr3 = this.arr2.filter(x => x.age >= 23)
+                }
             }
         })
     </script>

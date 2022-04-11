@@ -10,13 +10,21 @@
     <div id="app">
         <button v-on:click="sayHello">Click me</button>
         <input type="text" v-model="input" v-on:input="changeInput">
+
+        <ul>
+            <li v-for="(item, index) in todoList">{{item}}</li>
+        </ul>
+        <input type="text" v-model="todoItem">
+        <button v-on:click="addTodoItem">addTodoItem</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
         let app = new Vue({
             el: "#app",
             data: {
-                input: ''
+                input: '',
+                todoList: [],
+                todoItem: ''
             },
             methods: {
                 sayHello(){
@@ -24,6 +32,10 @@
                 },
                 changeInput(){
                     console.log(this.input)
+                },
+                addTodoItem(){
+                    this.todoList.push(this.todoItem)
+                    this.todoItem = ''
                 }
             }
         })

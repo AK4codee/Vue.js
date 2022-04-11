@@ -67,6 +67,7 @@
             },
             watch: {
                 'inputData.account': {
+                    immediate: true,
                     handler(){
                         if(this.inputData.account == ''){
                             this.inputDataCheck.accountError = true

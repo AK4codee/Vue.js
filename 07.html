@@ -24,10 +24,13 @@
                 b:0,
             },
             computed: {
+                // 1. 一定要有 return 更新 sum　的值
+                // 2. sum 雖然寫在 computed 裡，但她是一個 property
+                // 3. a 跟 b 只要有一方值有變更，就會觸發(如果用 watch 就要同時監聽 a 跟 b)
                 sum(){
                     return parseInt(this.a) + parseInt(this.b)
                 }
-            }
+            },
         })
     </script>
 </body>

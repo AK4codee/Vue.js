@@ -12,7 +12,7 @@
             <li v-for="(item, index) in arr">{{index}}: {{item}}</li>
         </ul>
         <ul>
-            <li v-for="(item, index) in arr2">{{item.name}} {{item.age}}</li>
+            <li v-for="(item, index) in arr2" v-show="item.age > 23">{{item.name}} {{item.age}}</li>
         </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>

@@ -11,14 +11,24 @@
         <ul>
             <li v-for="(item, index) in arr">{{index}}: {{item}}</li>
         </ul>
+        <ul>
+            <li v-for="(item, index) in arr2">{{item.name}} {{item.age}}</li>
+        </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
         const arr = ['Apple', 'Banana', 'Orange', 'Pineapple']
+        const arr2 = [
+            {name: 'Jimmy', age: 25},
+            {name: 'Annie', age: 24},
+            {name: 'Alan', age: 23},
+            {name: 'Ban', age: 22},
+        ]
         let app = new Vue({
             el: "#app",
             data: {
-                arr
+                arr,
+                arr2
             }
         })
     </script>

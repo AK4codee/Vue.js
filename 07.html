@@ -14,6 +14,16 @@
         <input type="number" v-model="b"><br>
 
         <label for="">加總:</label><span>{{sum}}</span>
+
+        <ul>
+            <li v-for="(item, index) in cartList">
+                品名: {{item.productName}}
+                價錢: {{item.price}}
+                數量: <input type="number" v-model="item.count">
+            </li>
+        </ul>
+
+        <p>summary: {{total}}</p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
@@ -22,6 +32,11 @@
             data: {
                 a:0,
                 b:0,
+                cartList: [
+                    {productName: 'milk', price: 50, count: 10},
+                    {productName: 'cola', price: 30, count: 20},
+                    {productName: 'tea', price: 40, count: 15}
+                ]
             },
             computed: {
                 // 1. 一定要有 return 更新 sum　的值
@@ -29,6 +44,10 @@
                 // 3. a 跟 b 只要有一方值有變更，就會觸發(如果用 watch 就要同時監聽 a 跟 b)
                 sum(){
                     return parseInt(this.a) + parseInt(this.b)
+                },
+                total(){
+                    let res = this.cartList.map( x => x.price * x.count).reduce((a, b) => {return a + b})
+                    return res
                 }
             },
         })

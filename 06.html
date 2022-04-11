@@ -23,7 +23,7 @@
                     name: ''
                 },
                 inputMsg: '',
-                nameMsg: ''
+                nameMsg: '',
             },
             watch: {
                 inputVal(){
@@ -35,6 +35,13 @@
                 },
                 'obj.name': function(){
                     this.nameMsg = 'name is ' + this.obj.name
+                },
+                nameMsg: {
+                    handler(){
+                        
+                    },
+                    immediate: true,
+                    deep: true,
                 }
             }
         })

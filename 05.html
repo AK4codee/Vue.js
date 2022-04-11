@@ -9,17 +9,21 @@
 <body>
     <div id="app">
         <button v-on:click="sayHello">Click me</button>
+        <input type="text" v-model="input" v-on:input="changeInput">
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
         let app = new Vue({
             el: "#app",
             data: {
-                
+                input: ''
             },
             methods: {
                 sayHello(){
                     alert('Hello')
+                },
+                changeInput(){
+                    console.log(this.input)
                 }
             }
         })

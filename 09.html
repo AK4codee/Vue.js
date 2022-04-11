@@ -12,15 +12,17 @@
             <div class="col-12 col-md-6 mb-3">
                 <label for="">Account</label>
                 <input type="text" v-model="inputData.account" :class="{'is-invalid': inputDataCheck.accountError}" class="form-control">
-                <div v-if="inputDataCheck.accountError" class="text-danger small mt-1">{{inputDataCheck.accountErrorMsg}}</div><!--  不為空，長度大於8 -->
+                <div v-if="inputDataCheck.accountError" class="text-danger small mt-1">{{inputDataCheck.accountErrorMsg}}</div>
             </div>
             <div class="col-12 col-md-6 mb-3">
                 <label for="">Password</label>
-                <input type="text" v-model="inputData.password" class="form-control">
+                <input type="text" v-model="inputData.password" class="form-control" :class="{'is-invalid': inputDataCheck.passwordError}">
+                <div class="text-danger small mt-1">{{inputDataCheck.passwordErrorMsg}}</div>
             </div>
             <div class="col-12 col-md-6 mb-3">
                 <label for="">Check Password</label>
-                <input type="text" v-model="inputData.checkPassword" class="form-control">
+                <input type="text" v-model="inputData.checkPassword" class="form-control" :class="{'is-invalid': inputDataCheck.checkPasswordError}">
+                <div class="text-danger small mt-1">{{inputDataCheck.checkPasswordErrorMsg}}</div>
             </div>
             <div class="col-12 col-md-6 mb-3">
                 <label for="">Name</label>
@@ -56,7 +58,11 @@
                 },
                 inputDataCheck: {
                     accountError: false,
-                    accountErrorMsg: ''
+                    accountErrorMsg: '',
+                    passwordError: false,
+                    passwordErrorMsg: '',
+                    checkPasswordError: false,
+                    checkPasswordErrorMsg: ''
                 }
             },
             watch: {
@@ -72,6 +78,31 @@
                         else{
                             this.inputDataCheck.accountError = false
                             this.inputDataCheck.accountErrorMsg = ''
+                        }
+                    }
+                },
+                'inputData.password': {
+                    handler(){
+                        this.inputDataCheck.checkPasswordError = false
+                        this.inputDataCheck.checkPasswordErrorMsg = ""
+                        let passwordRegex = /^[0-9]*$/
+                        if(!passwordRegex.test(this.inputData.password)){
+                            this.inputDataCheck.passwordError = true
+                            this.inputDataCheck.passwordErrorMsg = "密碼必須為數字"
+                        }else{
+                            this.inputDataCheck.passwordError = false
+                            this.inputDataCheck.passwordErrorMsg = ""
+                        }
+                    }
+                },
+                'inputData.checkPassword': {
+                    handler(){
+                        if(this.inputData.checkPassword != this.inputData.password){
+                            this.inputDataCheck.checkPasswordError = true
+                            this.inputDataCheck.checkPasswordErrorMsg = "與密碼不一致"
+                        }else{
+                            this.inputDataCheck.checkPasswordError = false
+                            this.inputDataCheck.checkPasswordErrorMsg = ""
                         }
                     }
                 }

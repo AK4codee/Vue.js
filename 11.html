@@ -9,16 +9,18 @@
 <body>
     <div id="app">
         <ul>
-            <li v-for="(item, index) in nameList" :key="index">
-                {{item}}
-                <button v-on:click="alertName(item)">click me</button>
-            </li>
+            <alert-name v-for="(item, index) in nameList" :key="index" :Name="item"></alert-name>
         </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script>
+    <script type="module">
+        import AlertName from './TheAlert.js'
+
         let app = new Vue({
             el: "#app",
+            components:{
+                'alert-name': AlertName
+            },
             data: {
                 nameList: ['Andy', 'Jimmy', 'Jim']
             },

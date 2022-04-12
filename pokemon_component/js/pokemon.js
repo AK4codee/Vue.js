@@ -9,6 +9,9 @@ const app = new Vue({
             pokemonRequestApi: 'https://raw.githubusercontent.com/jacko1114/Homeworks/main/Pokemon/js/pokemons.json',
             pokemonArray: [],
             cardArray: []
+        },
+        pageSetting: {
+            index: 0
         }
     },
     methods: {
@@ -39,6 +42,10 @@ const app = new Vue({
         },
         addAllCards(){
             this.pokemonData.cardArray = this.pokemonData.pokemonArray
+        },
+        addOneCard(){
+            this.pokemonData.cardArray.push(this.pokemonData.pokemonArray[this.pageSetting.index])
+            this.pageSetting.index++
         },
         showPokemon(){}
     },

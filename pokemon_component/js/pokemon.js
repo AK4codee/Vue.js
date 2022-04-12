@@ -27,7 +27,7 @@ const app = new Vue({
                         sp_attack: item.base['Sp_Attack'],
                         sp_defense: item.base['Sp_Defense'],
                         speed:  item.base.Speed,
-                        img: 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail',
+                        img: `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${item.id.toString().padStart(3,'0')}.png`,
                         type: item.type,
                         evolution: item.evolution,
                         genus: item.genus
@@ -36,9 +36,13 @@ const app = new Vue({
                 }
             })
             .catch((err) => {console.warn(err)})
-        }
+        },
+        addAllCards(){
+            this.pokemonData.cardArray = this.pokemonData.pokemonArray
+        },
+        showPokemon(){}
     },
-    created: {
-
+    created() {
+        this.getPokemonData()
     }
 })

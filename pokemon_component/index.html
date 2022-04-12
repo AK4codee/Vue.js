@@ -36,24 +36,7 @@
         </div>
         <div class="container-lg p-0">
             <div class="row m-0 render">
-                <div class="col-6 col-md-4 col-lg-3 my-3" v-for="(data, index) in pokemonData.cardArray" :key="index">
-                    <div class="card bg-light">
-                        <div class="card-body p-0">
-                            <div class="card-img">
-                                <img :src="data.img" class="card-img-top">
-                            </div>
-                            <h5 class="card-title rounded bg-dark text-light d-flex p-1 mx-3">
-                                <span class="pokemon-id pl-2">{{data.id}}</span>
-                                <span>．</span>
-                                <span class="pokemon-name">{{data.name}}</span>
-                            </h5>
-                        </div>
-                        <div class="card-footer text-center bg-light border-0">
-                            <a @click="showPokemon(index)" href="#" data-toggle="modal" data-target=".modal"
-                                class="btn btn-secondary">詳細資訊</a>
-                        </div>
-                    </div>
-                </div>
+                <pokemon-card v-for="(data, index) in pokemonData.cardArray" :pokemon="data" :key="index" v-on:show-modal="showPokemon(index)"></pokemon-card>
             </div>
         </div>
         <div class="modal fade pt-md-5" tabindex="-1">
@@ -123,7 +106,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
         integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="./js/pokemon.js"></script>
+    <script type="module" src="./js/pokemon.js"></script>
 </body>
 
 </html>

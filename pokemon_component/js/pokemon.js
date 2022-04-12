@@ -1,5 +1,10 @@
+import Card from './card.js'
+
 const app = new Vue({
     el: '#app',
+    components: {
+        'pokemon-card': Card
+    },
     data: {
         headerSetting:{
             mainImg: './images/722.png',

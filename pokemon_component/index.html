@@ -14,7 +14,25 @@
 <body>
     <div id="app">
         <div class="container-fluid px-0 overflow-hidden">
-            
+            <div class="jumbotron position-relative mb-0">
+                <h1 class="text-center py-3 display-3 font-weight-bold">寶可夢圖鑑</h1>
+                <img :src="headerSetting.mainImg" alt="" class="position-absolute">
+                <img :src="headerSetting.mainImg" alt="" class="position-absolute">
+                <img :src="headerSetting.mainImg" alt="" class="position-absolute">
+                <img :src="headerSetting.subImg" alt="" class="position-absolute">
+            </div>
+        </div>
+        <div class="container-lg p-0">
+            <div class="row m-0">
+                <div class="col-12">
+                    <div class="btn-group">
+                        <button class="btn m-2"><span class="h3">加入一張卡片</span></button>
+                        <button class="btn m-2"><span class="h3">移除一張卡片</span></button>
+                        <button class="btn m-2"><span class="h3">加入全部卡片</span></button>
+                        <button class="btn m-2"><span class="h3">移除全部卡片</span></button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

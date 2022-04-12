@@ -8,7 +8,22 @@ const app = new Vue({
         pokemonData:{
             pokemonRequestApi: 'https://raw.githubusercontent.com/jacko1114/Homeworks/main/Pokemon/js/pokemons.json',
             pokemonArray: [],
-            cardArray: []
+            cardArray: [],
+            currentPokemon: {
+                index: '',
+                id: '',
+                name: '',
+                hp: '',
+                attack: '',
+                defense: '',
+                sp_attack: '',
+                sp_defense: '',
+                speed:  '',
+                img: '',
+                type: '',
+                evolution: '',
+                genus: ''
+            }
         },
         pageSetting: {
             index: 0
@@ -55,7 +70,9 @@ const app = new Vue({
             this.pokemonData.cardArray = []
             this.pageSetting.index = 0;
         },
-        showPokemon(){}
+        showPokemon(index){
+            this.pokemonData.currentPokemon = this.pokemonData.pokemonArray[index]
+        }
     },
     created() {
         this.getPokemonData()

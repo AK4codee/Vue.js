@@ -49,7 +49,63 @@
                             </h5>
                         </div>
                         <div class="card-footer text-center bg-light border-0">
-                            <a @click="showPokemon" href="#" data-toggle="modal" data-target=".modal" class="btn btn-secondary">詳細資訊</a>
+                            <a @click="showPokemon(index)" href="#" data-toggle="modal" data-target=".modal"
+                                class="btn btn-secondary">詳細資訊</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade pt-md-5" tabindex="-1">
+            <div class="modal-dialog mt-md-5">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-center text-white">{{pokemonData.currentPokemon.name}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center p-0 d-md-flex">
+                        <div class="col-12 col-md-5 border-right border-secondary  flex-md-column justify-content-center px-0 modal-pic">
+                            <img :src="pokemonData.currentPokemon.img" alt="" id="pokemonImage" class="d-block mx-auto">
+                            <div class="d-flex flex-md-column align-items-center justify-content-center">
+                                <div class="types my-3"></div>
+                                <div class="genus my-3">
+                                    <span class="py-2 px-4 bg-secondary text-white rounded-pill h6"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-7 px-0">
+                            <div class="modal-base">
+                                <h3 class="modal-title my-3 text-white bg-dark w-25 border-right rounded-right text-right pr-1">能力值</h3>
+                                <table class="table mb-0 mx-5 w-80">
+                                    <thead class="thead-light border border-secondary">
+                                        <tr>
+                                            <th scope="col" class="border border-secondary">生命</th>
+                                            <th scope="col" class="border border-secondary">攻擊</th>
+                                            <th scope="col" class="border border-secondary">防禦</th>
+                                            <th scope="col" class="border border-secondary">特攻</th>
+                                            <th scope="col" class="border border-secondary">特防</th>
+                                            <th scope="col" class="border border-secondary">速度</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border border-light">
+                                            <td id="hp" class="border border-secondary">{{pokemonData.currentPokemon.hp}}</td>
+                                            <td id="attack" class="border border-secondary">{{pokemonData.currentPokemon.attack}}</td>
+                                            <td id="defense" class="border border-secondary">{{pokemonData.currentPokemon.defense}}</td>
+                                            <td id="spAttack" class="border border-secondary">{{pokemonData.currentPokemon.sp_attack}}</td>
+                                            <td id="spDefense" class="border border-secondary">{{pokemonData.currentPokemon.sp_defense}}</td>
+                                            <td id="speed" class="border border-secondary">{{pokemonData.currentPokemon.speed}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-evolution">
+                                <h3 class="modal-title mt-3 mb-3 text-white bg-dark w-25 border-right rounded-right text-right pr-1">進化</h3>
+                                <div class="evolution d-flex"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -64,7 +120,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
         crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+        integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./js/pokemon.js"></script>
 </body>
 

@@ -53,6 +53,7 @@ const app = new Vue({
         },
         removeAllCards(){
             this.pokemonData.cardArray = []
+            this.pageSetting.index = 0;
         },
         showPokemon(){}
     },

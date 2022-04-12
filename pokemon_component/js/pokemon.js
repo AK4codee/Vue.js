@@ -59,10 +59,12 @@ const app = new Vue({
             this.pokemonData.cardArray = this.pokemonData.pokemonArray
         },
         addOneCard(){
+            if(this.pageSetting.index > this.pokemonData.pokemonArray.length -1) return
             this.pokemonData.cardArray.push(this.pokemonData.pokemonArray[this.pageSetting.index])
             this.pageSetting.index++
         },
         removeOneCard(){
+            if(this.pageSetting.index == 0) return
             this.pokemonData.cardArray.splice(this.pageSetting.index -1, 1)
             this.pageSetting.index--
         },

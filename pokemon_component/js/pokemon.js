@@ -51,6 +51,9 @@ const app = new Vue({
             this.pokemonData.cardArray.splice(this.pageSetting.index -1, 1)
             this.pageSetting.index--
         },
+        removeAllCards(){
+            this.pokemonData.cardArray = []
+        },
         showPokemon(){}
     },
     created() {

@@ -47,6 +47,10 @@ const app = new Vue({
             this.pokemonData.cardArray.push(this.pokemonData.pokemonArray[this.pageSetting.index])
             this.pageSetting.index++
         },
+        removeOneCard(){
+            this.pokemonData.cardArray.splice(this.pageSetting.index -1, 1)
+            this.pageSetting.index--
+        },
         showPokemon(){}
     },
     created() {

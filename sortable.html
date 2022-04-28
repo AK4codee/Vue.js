@@ -19,6 +19,9 @@
     <!-- Load the following for BootstrapVueIcons support -->
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
     <script src="https://kit.fontawesome.com/75ce54417c.js" crossorigin="anonymous"></script>
+
+    
+
     <title>Document</title>
     <style>
         .handle{
@@ -38,35 +41,68 @@
                             <th>No</th>
                             <th>Name</th>
                             <th>Age</th>
+                            <th>sort</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr v-for="person in personList">
-                            <td class="handle text-nowrap">
-                                <i class="fa fa-ellipsis-v"></i>
-                                <i class="fa fa-ellipsis-v"></i>
-                            </td>
-                            <td class="text-nowrap">{{ person.id}}</td>
-                            <td class="text-nowrap">{{ person.name}}</td>
-                            <td class="text-nowrap">{{ person.age}}</td>
-                        </tr>
+                    <tbody
+                        is="draggable"
+                        tag="tbody"
+                        v-model="personList"
+                        handle=".handle"
+                        v-on:start="drag = true"
+                        v-on:end="drag = false"
+                        v-bind="dragOptions"
+                    >
+                        <transition-group type="transition" :name="drag ? null : 'flip-list'">
+                            <tr v-for="person in personList" :key="person.id">
+                                <td class="handle text-nowrap">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </td>
+                                <td class="text-nowrap">{{ person.id }}</td>
+                                <td class="text-nowrap">{{ person.name }}</td>
+                                <td class="text-nowrap">{{ person.age }}</td>
+                                <td>{{ person.sort }}</td>
+                            </tr>
+                        </transition-group>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- CDNJS :: Sortable (https://cdnjs.com/) -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
+    <!-- CDNJS :: Vue.Draggable (https://cdnjs.com/) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
     <script>
         let app = new Vue({
             el: "#app",
             data: {
                 personList: [
-                    {id: 1, name: "Jimmy", age: 26},
-                    {id: 2, name: "Annie", age: 16},
-                    {id: 3, name: "Alan", age: 27},
-                    {id: 4, name: "Ban", age: 20},
-                    {id: 5, name: "Ian", age: 36},
-                ]
+                    { id: 1, name: "Jimmy", age: 26, sort: 1 },
+                    { id: 2, name: "Annie", age: 16, sort: 1 },
+                    { id: 3, name: "Alan", age: 27, sort: 1 },
+                    { id: 4, name: "Ban", age: 20, sort: 1 },
+                    { id: 5, name: "Ian", age: 36, sort: 1 },
+                ],
+                drag: false,
+                dragOptions: {
+                    animation: 200,
+                    ghostClass: 'abc'
+                }
+            },
+            watch: {
+                drag: {
+                    handler(){
+                        if(this.drag == false){
+                            this.personList.forEach((element, index) => {
+                                element.sort = index + 1
+                            });
+                            console.log(this.personList)
+                        }
+                    }
+                }
             }
         })
     </script>
